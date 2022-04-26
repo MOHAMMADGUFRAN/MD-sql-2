@@ -1,0 +1,100 @@
+create database student
+use student
+
+create table stdinfo(id int identity primary key,
+fname varchar(20),
+lname varchar(20),
+salary varchar(30),
+dep_no varchar(30))
+
+insert into stdinfo values ('vikas',
+'sharma',
+'45000','it')
+insert into stdinfo values ('nitin',
+'ahlawat',
+'30000','hr')
+insert into stdinfo values ('vivek',
+'jain',
+'60000','manager')
+insert into stdinfo values ('sumit',
+'chauhan',
+'50000','cs')
+insert into stdinfo values ('aman',
+'mishra',
+'55000','food')
+
+select *from stdinfo
+
+  
+SELECT * FROM stdinfo ORDER BY Dep_NO DESC, salary DESC;
+
+select * from stdinfo where 1=2;
+
+SELECT * INTO dept_table FROM stdinfo WHERE 1=2
+
+select* from stdinfo where salary between 30000 and 50000
+
+insert into dept_table values ('dhanush',
+'jain',
+'40000','it')
+insert into dept_table values ('nitin',
+'ahlawat',
+'30000','hr')
+insert into dept_table values ('vinit',
+'kumar',
+'50000','manager')
+insert into dept_table values ('tarun',
+'thakur',
+'45000','cs')
+insert into dept_table values ('aman',
+'mishra',
+'55000','food')
+
+   --join--
+   
+select * from stdinfo as A
+left join dept_table as B
+on A.id=B.id
+
+select *
+from stdinfo t1
+union
+select *
+from dept_table t2
+where not exists (select *
+                from stdinfo t1
+                     where t1.id = t2.id);
+
+(Select * from stdinfo) Intersect (Select * from dept_table)
+
+select A.id,A.fname,A.lname,A.salary FROM stdinfo as A
+  LEFT JOIN dept_table as B
+  ON A.id = B.id 
+      WHERE A.id IS  NULL
+
+
+SELECT dep_no, sum(salary) "Total" FROM stdinfo
+GROUP BY dep_no 
+HAVING COUNT(id) >= 2
+
+SELECT * FROM stdinfo 
+WHERE fname NOT IN
+(SELECT fname FROM stdinfo)
+
+
+SELECT COUNT(id) from stdinfo
+SELECT min(Salary)
+FROM stdinfo;
+
+
+SELECT Max(Salary)
+FROM stdinfo;
+select * from stdinfo
+select * from dept_table
+
+SELECT sum(Salary)
+FROM stdinfo
+
+
+SELECT avg(Salary)
+FROM stdinfo;
